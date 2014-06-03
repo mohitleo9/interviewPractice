@@ -2,10 +2,11 @@
 def uniqueString(s):
     # this one uses additional data structure
     # complexity is n2
-    for i,a in enumerate(s):
+    for i, a in enumerate(s):
         if a in s[i+1:]:
             return -1
     return 1
+
 
 def uniqueStringWithHash(s):
     uniqueHash = {}
