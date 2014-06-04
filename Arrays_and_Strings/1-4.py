@@ -4,6 +4,4 @@ def replaceSpace(list, sub):
     print asdf
 
 
-
-
 replaceSpace(' asdf asdf  asdf  ', '111')
