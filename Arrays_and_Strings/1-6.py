@@ -19,14 +19,17 @@ def rotate90(matrix):
     length = len(matrix)
     for layer in range(0, length / 2):
         # do the four way swap
-        for i in range(layer, length - 1 - layer):
+        last = length - 1 - layer
+        for i in range(layer, last):
             top = matrix[layer][i]
+            # left = matrix[last - i][layer]
+            # bottom = matrix[last][last - i]
+            # right = matrix[layer + i][last]
 
-            matrix[layer][i] = matrix[length - 1 - i][layer]
-            matrix[length - 1 - i][layer] = matrix[layer][length - 1 - i]
-            matrix[layer][length - 1 - i] = matrix[length - 1 - i][length - layer - 1]
-            matrix[length - 1 - i][length - layer - 1] = top
-
+            matrix[layer][i] = matrix[last - i][layer]
+            matrix[last - i][layer] = matrix[last][last - i]
+            matrix[last][last - i] = matrix[layer + i][last]
+            matrix[layer + i][last] = top
             # top, right, bottom, left = left, top, right, bottom
             # matrix[layer][i], matrix[layer][length - 1 - i], matrix[length - 1 - i][length - layer - 1], matrix[length - 1 - i][layer] = matrix[length - 1 - i][layer], matrix[layer][i], matrix[layer][i], matrix[layer][i]
 
