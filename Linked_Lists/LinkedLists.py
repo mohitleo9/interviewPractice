@@ -24,6 +24,27 @@ class LinkedList:
         # insert node
         tmp.next = node
 
+    def delete_node(self, data):
+        if not self.head:
+            return False
+
+        tmp = self.head
+        if tmp.data == data:
+            self.head = self.head.next
+            return True
+
+        found = False
+        while tmp.next:
+            if tmp.next.data == data:
+                found = True
+                break
+            tmp = tmp.next
+
+        if not found:
+            return False
+        tmp.next = tmp.next.next
+        return True
+
     def __str__(self):
         if not self.head:
             return "None"
@@ -33,7 +54,8 @@ class LinkedList:
         while tmp.next:
             strin += str(tmp.data) + '->'
             tmp = tmp.next
-            strin += str(tmp.data) + '->'
+
+        strin += str(tmp.data) + '->'
         strin += 'None'
         return strin
 
@@ -48,6 +70,9 @@ def main():
     l.insert_last(n)
     n = Node(6)
     l.insert_last(n)
+    print l.delete_node(2)
+    print l.delete_node(6)
+    print l.delete_node(4)
     print l
 if __name__ == '__main__':
     main()
