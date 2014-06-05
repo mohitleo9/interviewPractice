@@ -24,14 +24,32 @@ def k_to_last(l, k):
     return tmp
 
 
+def k_recursive(n, k, count):
+    if not n:
+        count[0] = 0
+        return False
+
+    tll = k_recursive(n.next, k, count)
+    count[0] += 1
+    if k == count[0]:
+        return n
+
+    return tll
+
+
 def main():
     l = LinkedList()
     for i in range(0, 10):
         l.insert_last(Node(i))
 
     print l
-    print k_to_last(l, 11)
-    print k_to_last(l, 8)
+    # print k_to_last(l, 11)
+    # print k_to_last(l, 8)
+
+    k = 3
+    count = [0]
+    # notice that the head is passed not the list itself
+    print k_recursive(l.head, k, count)
 
 
 if __name__ == '__main__':
