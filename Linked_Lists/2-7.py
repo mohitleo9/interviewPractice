@@ -2,16 +2,15 @@
 from LinkedLists import LinkedList, Node
 
 
-def is_panildrome(l, first, last, hasLooped):
+def is_panildrome(l, last):
     # case where empty list
 
     if not last:
-        hasLooped[0] = True
         return l.head
 
-    first = is_panildrome(l, first, last.next, hasLooped)
+    first = is_panildrome(l, last.next)
 
-    if hasLooped[0] and first not in [False, True]:
+    if first not in [False, True]:
         if first.data != last.data:
             return False
 
@@ -25,10 +24,10 @@ def is_panildrome(l, first, last, hasLooped):
 def main():
     l = LinkedList()
 
-    for i in ['1', '2', '3', '2', '1', '2']:
+    for i in ['1', '2', '3', '3', '1']:
         l.insert_last(Node(i))
 
-    print is_panildrome(l, l.head, l.head, [False])
+    print is_panildrome(l, l.head)
 
 
 if __name__ == '__main__':
