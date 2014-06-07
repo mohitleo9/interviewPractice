@@ -24,6 +24,16 @@ class LinkedList:
         # insert node
         tmp.next = node
 
+    def insert_first(self, node):
+        if not node:
+            return
+        if not self.head:
+            self.head = node
+            return
+        node.next = self.head
+        self.head = node
+        return
+
     def delete_node(self, data):
         if not self.head:
             return False
@@ -61,18 +71,20 @@ class LinkedList:
 
 
 def main():
-    n = Node(2)
+    # n = Node(2)
     l = LinkedList()
-    l.insert_last(n)
-    n = Node(4)
-    l.insert_last(n)
-    n = Node(5)
-    l.insert_last(n)
-    n = Node(6)
-    l.insert_last(n)
-    print l.delete_node(2)
-    print l.delete_node(6)
-    print l.delete_node(4)
+    # l.insert_last(n)
+    # n = Node(4)
+    # l.insert_last(n)
+    # n = Node(5)
+    # l.insert_last(n)
+    # n = Node(6)
+    # l.insert_last(n)
+    # print l.delete_node(2)
+    # print l.delete_node(6)
+    # print l.delete_node(4)
+
+    l.insert_first(Node(6))
     print l
 if __name__ == '__main__':
     main()
