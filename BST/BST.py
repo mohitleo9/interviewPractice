@@ -91,7 +91,20 @@ def successor(node):
 
 def predecessor(node):
     """Given a node return the just smaller element"""
-    pass
+
+    # if the node has a left tree then
+    # the pre must be the last right one
+    if node.left:
+        tmp = node.left
+        while tmp.right.right:
+            tmp = tmp.right
+        return tmp.right
+
+    parent = node.parent
+    while not parent.right == node:
+        node = node.parent
+        parent = node.parent
+    return parent
 
 
 def main():
@@ -108,7 +121,7 @@ def main():
     print 'asdfasdf'
 
     print n
-    print successor(n)
+    print predecessor(n)
 
 if __name__ == '__main__':
     main()
