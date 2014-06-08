@@ -14,6 +14,22 @@ class Node:
         return str(self.data)
 
 
+def search(root, data):
+    if not root:
+        return -1
+
+    if root.data == data:
+        return root
+
+    if data > root.data:
+        return search(root.right, data)
+    else:
+        return search(root.left, data)
+
+
+    pass
+
+
 def insert(root, node, parent=None):
     if not root:
         root = node
@@ -120,8 +136,8 @@ def main():
     levelOrder(root)
     print 'asdfasdf'
 
-    print n
-    print predecessor(n)
+    print search(root, 5)
+
 
 if __name__ == '__main__':
     main()
