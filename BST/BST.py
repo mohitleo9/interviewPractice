@@ -33,6 +33,7 @@ def insert(root, node, parent=None):
             root.left = node
             root.parent = parent
 
+
 def levelOrder(root):
     """
     This does the cool level order traversal of a tree 
@@ -69,6 +70,30 @@ def inorder(root):
     inorder(root.right)
 
 
+def successor(node):
+    """Given a node return the next largest"""
+
+    if node.right:
+        tmp = node.right
+        while tmp.left.left:
+            tmp = tmp.left
+        return tmp.left
+
+    # if the node does not has a right sub tree
+    # then the find the parent of which this one is a left subtree (think in terms of inorder traversal)
+    parent = node.parent
+    while not parent.left == node:
+        node = node.parent
+        parent = node.parent
+
+    return parent
+
+
+def predecessor(node):
+    """Given a node return the just smaller element"""
+    pass
+
+
 def main():
     root = Node(2)
     n = Node(3)
@@ -77,9 +102,13 @@ def main():
     insert(root, Node(5))
     insert(root, Node(1))
     insert(root, Node(0))
+    insert(root, Node(4))
 
-    # inorder(root)
     levelOrder(root)
+    print 'asdfasdf'
+
+    print n
+    print successor(n)
 
 if __name__ == '__main__':
     main()
