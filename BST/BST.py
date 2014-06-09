@@ -123,20 +123,50 @@ def predecessor(node):
     return parent
 
 
+def isBalanced(root):
+    """ A tree is balanced if height of two subtrees is never greater than 1"""
+    if not root:
+        return True
+
+    heightLeft = height(root.left)
+    heightRight = height(root.right)
+
+    diff = heightLeft - heightRight
+
+    if diff in range(-1, 2):
+        return isBalanced(root.left) and isBalanced(root.right)
+    else:
+        return False
+
+
+def height(root):
+    if not root:
+        return 0
+
+    if not root.left and not root.right:
+        return 1
+
+    leftHeight = 1 + height(root.left)
+    rightHeight = 1 + height(root.right)
+
+    return max(leftHeight, rightHeight)
+
+
 def main():
     root = Node(2)
     n = Node(3)
-    insert(None, root)
     insert(root, n)
     insert(root, Node(5))
+    insert(root, Node(6))
     insert(root, Node(1))
-    insert(root, Node(0))
-    insert(root, Node(4))
+    # insert(root, Node(0))
+    # insert(root, Node(4))
 
     levelOrder(root)
     print 'asdfasdf'
 
-    print search(root, 5)
+    print 'height = ' + str(height(root))
+    print isBalanced(root)
 
 
 if __name__ == '__main__':
