@@ -1,5 +1,7 @@
 # Q implement a BST
 from Queue import Queue
+
+
 class Node:
 
     """This is Different Node for the Binary Search Tree"""
@@ -27,9 +29,6 @@ def search(root, data):
         return search(root.left, data)
 
 
-    pass
-
-
 def insert(root, node, parent=None):
     if not root:
         root = node
@@ -52,7 +51,7 @@ def insert(root, node, parent=None):
 
 def levelOrder(root):
     """
-    This does the cool level order traversal of a tree 
+    This does the cool level order traversal of a tree
     more usefull than the other one(inorder) for debugging
     it is kinda bfs
     """
@@ -61,7 +60,6 @@ def levelOrder(root):
     currentLevel = Queue()
     nextLevel = Queue()
     currentLevel.put(root)
-
 
     while not currentLevel.empty():
         string = ""
@@ -96,7 +94,8 @@ def successor(node):
         return tmp.left
 
     # if the node does not has a right sub tree
-    # then the find the parent of which this one is a left subtree (think in terms of inorder traversal)
+    # then the find the parent of which this one is a left subtree (think in
+    # terms of inorder traversal)
     parent = node.parent
     while not parent.left == node:
         node = node.parent
@@ -139,6 +138,32 @@ def isBalanced(root):
         return False
 
 
+def checkHeight(root):
+    """
+    this function does the same thing as isBalanced but a little different
+    this one does that with a little panache it returns the height of the tree if
+    the tree is balanced otherwise returns -1
+    """
+
+    if not root:
+        return 0
+
+    if not root.left and not root.right:
+        return 1
+
+    leftHeight = 1 + height(root.left)
+    rightHeight = 1 + height(root.right)
+
+    if leftHeight == 0 or rightHeight == 0:
+        return -1
+
+    diff = abs(leftHeight - rightHeight)
+
+    if diff > 1:
+        return -1
+    return max(leftHeight, rightHeight)
+
+
 def height(root):
     if not root:
         return 0
@@ -152,21 +177,44 @@ def height(root):
     return max(leftHeight, rightHeight)
 
 
+def commonAncestor(root, node1, node2, found1=False, found2=False):
+    if not root:
+        return None
+
+    if root == node1:
+        found1 = True
+    if root == node2:
+        found2 = True
+
+    ans = commonAncestor(root.left, node1, node2, found1, found2)
+    answ = commonAncestor(root.right, node1, node2, found1, found2)
+
+    if found1 and found2:
+        return root
+    if ans:
+        return ans
+    else:
+        return answ
+
+
 def main():
     root = Node(2)
     n = Node(3)
     insert(root, n)
-    insert(root, Node(5))
+    insert(root, Node(0))
     insert(root, Node(6))
+    insert(root, Node(5))
     insert(root, Node(1))
-    # insert(root, Node(0))
-    # insert(root, Node(4))
+    insert(root, Node(7))
+    insert(root, Node(4))
 
     levelOrder(root)
     print 'asdfasdf'
 
     print 'height = ' + str(height(root))
-    print isBalanced(root)
+    print isBalanced(n)
+    print checkHeight(n)
+    # print commonAncestor(root, n, search(root, 7))
 
 
 if __name__ == '__main__':
