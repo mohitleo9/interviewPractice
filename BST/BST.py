@@ -207,6 +207,9 @@ def main():
     insert(root, Node(1))
     insert(root, Node(7))
     insert(root, Node(4))
+    insert(root, Node(4))
+    insert(root, Node(4))
+    insert(root, Node(4))
 
     levelOrder(root)
     print 'asdfasdf'
