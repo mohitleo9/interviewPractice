@@ -11,7 +11,7 @@ def createBstFromSorted(root, arr, start, end):
 
         return
     mid = (start + end)/2
-    root.data = Node(arr[mid])
+    root.data = arr[mid]
 
     if not start > (mid - 1):
         root.left = Node()
