@@ -17,5 +17,5 @@ def hanoi(ndisks, startPeg=1, endPeg=3):
         print "Move disk %d from peg %d to peg %d" % (ndisks, startPeg, endPeg)
         hanoi(ndisks-1, helperPeg, endPeg)
 
-hanoi(ndisks=2)
+hanoi(ndisks=3)
 # moveTower(1,"A","B","C")
